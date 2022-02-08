@@ -4,7 +4,21 @@ import sys
 import os
 
 def size_reduction(image_paths):
-    pass
+    if os.path.isdir('Reduced_img') is False:
+        os.mkdir('Reduced_img')
+
+    for single_path in image_paths:
+        # relative_path = os.path.relpath(single_path)
+
+        image = Image.open(single_path)
+        image.thumbnail((1920, 1920))
+        # rotated = image.rotate(-90)
+
+        ext = os.path.splitext(single_path)[1]
+        img_name = os.path.basename(single_path)
+        img_name = img_name.split('.')
+
+        image.save(f"Reduced_img/{img_name[0]}{ext}")
 
 
 sg.theme('DarkBlack')
@@ -21,6 +35,7 @@ layout1 = [
 layout2 = [
     [sg.Text('Image - Size reduction:', font='Consolas 17')],
     [sg.Text('Choose files: '), sg.Input(key='-IN-'), sg.FilesBrowse()],
+    [sg.Button('Proceed', key='validation1')],
     [sg.Button('Back', key='back1')]
 ]
 
@@ -51,11 +66,9 @@ while True:
         break
 
     if event == 'Image - Size reduction':
-        size_reduction(values['-IN-'])
         window[f'-COL{layout}-'].update(visible=False)
         layout = 2
         window[f'-COL{layout}-'].update(visible=True)
-        # print(values['-IN-'])
         # break
 
     if event == 'PDF - Merge':
@@ -74,5 +87,8 @@ while True:
         window[f'-COL{layout}-'].update(visible=False)
         layout = 1
         window[f'-COL{layout}-'].update(visible=True)
+
+    if event == 'validation1':
+        size_reduction(values['-IN-'].split(';'))
 
 window.close()
