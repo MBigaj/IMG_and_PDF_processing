@@ -69,7 +69,6 @@ while True:
         window[f'-COL{layout}-'].update(visible=False)
         layout = 2
         window[f'-COL{layout}-'].update(visible=True)
-        # break
 
     if event == 'PDF - Merge':
         #pdf_merge()
