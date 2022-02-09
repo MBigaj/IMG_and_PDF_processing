@@ -52,7 +52,6 @@ layout = [
 window = sg.Window('Image and PDF processing Application', layout)
 
 layout = 1
-counter = 0
 
 while True:
     event, values = window.read()
@@ -87,9 +86,8 @@ while True:
         window[f'-COL{layout}-'].update(visible=True)
 
     if event == 'validation2':
-        counter += 1
         if values['-IN-0'] != '':
-            pdf_merge(values['-IN-0'].split(';'), counter)
+            pdf_merge(values['-IN-0'].split(';'))
         window[f'-COL{layout}-'].update(visible=False)
         layout = 1
         window[f'-COL{layout}-'].update(visible=True)

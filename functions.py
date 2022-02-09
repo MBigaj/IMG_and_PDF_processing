@@ -8,8 +8,10 @@ def add_watermark(pdf_paths, watermark_path):
         os.mkdir('Edited_pdf')
 
     pdf_list = (pdf for pdf in pdf_paths if os.path.splitext(pdf)[1] == '.pdf')
+    if os.path.splitext(watermark_path)[1] != '.pdf':
+        watermark_path = ''
 
-    if pdf_list:
+    if pdf_list and watermark_path:
         for pdf in pdf_list:
             pdf_file = PyPDF2.PdfFileReader(open(pdf, 'rb'))
             watermark = PyPDF2.PdfFileReader(open(watermark_path, 'rb'))
@@ -26,16 +28,17 @@ def add_watermark(pdf_paths, watermark_path):
                 output.write(new_file)
 
 
-def pdf_merge(pdf_paths, counter):
+def pdf_merge(pdf_paths):
     if os.path.isdir('Merged_pdf') is False:
         os.mkdir('Merged_pdf')
 
     pdf_list = (pdf for pdf in pdf_paths if os.path.splitext(pdf)[1] == '.pdf')
     if pdf_list:
+        counter = len(os.listdir('Merged_pdf')) + 1
         merger = PyPDF2.PdfFileMerger()
         for pdf in pdf_list:
             merger.append(open(pdf, 'rb'))
-        with open(f'Merged_pdf/merged{counter}.pdf', 'wb') as file:
+        with open(f'Merged_pdf/merged_pdf{counter}.pdf', 'wb') as file:
             merger.write(file)
 
 
