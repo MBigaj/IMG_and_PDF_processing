@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 from PIL import Image
-import sys
+import PyPDF2
 import os
 
 
@@ -30,6 +30,16 @@ def size_reduction(image_paths, resolution):
         image.save(f"Reduced_img/{img_name[0]}{ext}")
 
 
+def pdf_merge(pdf_paths):
+    pdf_list = (pdf for pdf in pdf_paths if os.path.splitext(pdf)[1] == '.pdf')
+    if pdf_list:
+        merger = PyPDF2.PdfFileMerger()
+        for pdf in pdf_list:
+            merger.append(open(pdf, 'rb'))
+        with open('result.pdf', 'wb') as file:
+            merger.write(file)
+
+
 sg.theme('DarkBlack')
 
 layout1 = [
@@ -43,8 +53,8 @@ layout1 = [
 ]
 
 layout2 = [
-    [sg.Text('Image - Resize:', font='Consolas 17')],
-    [sg.T('')],
+    [sg.Text('Image - Resize:'
+             '\n--------------------------------', font='Consolas 17')],
     [sg.Text('Choose files: '), sg.Input(key='-IN-'), sg.FilesBrowse()],
     [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution')],
     [sg.Button('Proceed', key='validation1')],
@@ -53,13 +63,17 @@ layout2 = [
 ]
 
 layout3 = [
-    [sg.Text('PDF - Merge', font='Consolas 17')],
+    [sg.Text('PDF - Merge'
+             '\n--------------------------------', font='Consolas 17')],
+    [sg.Text('Choose files: '), sg.Input(key='-IN-'), sg.FilesBrowse()],
+    [sg.Button('Proceed', key='validation2')],
     [sg.T('')],
     [sg.Button('Back', key='back2', font='Bold')]
 ]
 
 layout4 = [
-    [sg.Text('PDF - Add watermark', font='Consolas 17')],
+    [sg.Text('PDF - Add watermark'
+             '\n--------------------------------', font='Consolas 17')],
     [sg.T('')],
     [sg.Button('Back', key='back3', font='Bold')]
 ]
@@ -86,7 +100,6 @@ while True:
         window[f'-COL{layout}-'].update(visible=True)
 
     if event == 'PDF - Merge':
-        #pdf_merge()
         window[f'-COL{layout}-'].update(visible=False)
         layout = 3
         window[f'-COL{layout}-'].update(visible=True)
@@ -105,6 +118,13 @@ while True:
     if event == 'validation1':
         if values['-IN-'] != '':
             size_reduction(values['-IN-'].split(';'), values['Resolution'])
+        window[f'-COL{layout}-'].update(visible=False)
+        layout = 1
+        window[f'-COL{layout}-'].update(visible=True)
+
+    if event == 'validation2':
+        if values['-IN-0'] != '':
+            pdf_merge(values['-IN-0'].split(';'))
         window[f'-COL{layout}-'].update(visible=False)
         layout = 1
         window[f'-COL{layout}-'].update(visible=True)
