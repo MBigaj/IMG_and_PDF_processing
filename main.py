@@ -10,7 +10,7 @@ layout1 = [
     [sg.Button("PDF - Merge")],
     [sg.Button("PDF - Add watermark")],
     [sg.T('')],
-    [sg.OK(), sg.Cancel()]
+    [sg.Button('Exit')]
 ]
 
 layout2 = [
@@ -42,11 +42,18 @@ layout4 = [
     [sg.Button('Back', key='back3', font='Bold')]
 ]
 
+layout_all_done = [
+    [sg.Text('All Done!'
+             '\n--------------------------------', font='Consolas 17')],
+    [sg.Ok(font='Bold')]
+]
+
 layout = [
     [sg.Column(layout1, key='-COL1-'),
      sg.Column(layout2, visible=False, key='-COL2-'),
      sg.Column(layout3, visible=False, key='-COL3-'),
-     sg.Column(layout4, visible=False, key='-COL4-')]
+     sg.Column(layout4, visible=False, key='-COL4-'),
+     sg.Column(layout_all_done, visible=False, key='-COL5-')]
 ]
 
 window = sg.Window('Image and PDF processing Application', layout)
@@ -55,7 +62,7 @@ layout = 1
 
 while True:
     event, values = window.read()
-    if event in (sg.WIN_CLOSED, 'Cancel'):
+    if event in (sg.WIN_CLOSED, 'Exit'):
         break
 
     if event == 'Image - Resize':
@@ -82,19 +89,24 @@ while True:
         if values['-IN-'] != '':
             size_reduction(values['-IN-'].split(';'), values['Resolution'])
         window[f'-COL{layout}-'].update(visible=False)
-        layout = 1
+        layout = 5
         window[f'-COL{layout}-'].update(visible=True)
 
     if event == 'validation2':
         if values['-IN-0'] != '':
             pdf_merge(values['-IN-0'].split(';'))
         window[f'-COL{layout}-'].update(visible=False)
-        layout = 1
+        layout = 5
         window[f'-COL{layout}-'].update(visible=True)
 
     if event == 'validation3':
         if values['-IN-1'] != '' and values['watermark'] != '':
             add_watermark(values['-IN-1'].split(';'), values['watermark'])
+        window[f'-COL{layout}-'].update(visible=False)
+        layout = 5
+        window[f'-COL{layout}-'].update(visible=True)
+
+    if event == 'Ok':
         window[f'-COL{layout}-'].update(visible=False)
         layout = 1
         window[f'-COL{layout}-'].update(visible=True)
