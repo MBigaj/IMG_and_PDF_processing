@@ -26,7 +26,7 @@ layout2 = [
 layout3 = [
     [sg.Text('PDF - Merge'
              '\n--------------------------------', font='Consolas 17')],
-    [sg.Text('Choose files: '), sg.Input(key='-IN-'), sg.FilesBrowse()],
+    [sg.Text('Choose files: '), sg.Input(key='-IN-0'), sg.FilesBrowse()],
     [sg.Button('Proceed', key='validation2')],
     [sg.T('')],
     [sg.Button('Back', key='back2', font='Bold')]
@@ -35,6 +35,9 @@ layout3 = [
 layout4 = [
     [sg.Text('PDF - Add watermark'
              '\n--------------------------------', font='Consolas 17')],
+    [sg.Text('Choose files: '), sg.Input(key='-IN-1'), sg.FilesBrowse()],
+    [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark')],
+    [sg.Button('Proceed', key='validation3')],
     [sg.T('')],
     [sg.Button('Back', key='back3', font='Bold')]
 ]
@@ -49,6 +52,7 @@ layout = [
 window = sg.Window('Image and PDF processing Application', layout)
 
 layout = 1
+counter = 0
 
 while True:
     event, values = window.read()
@@ -66,7 +70,6 @@ while True:
         window[f'-COL{layout}-'].update(visible=True)
 
     if event == 'PDF - Add watermark':
-        #add_watermark()
         window[f'-COL{layout}-'].update(visible=False)
         layout = 4
         window[f'-COL{layout}-'].update(visible=True)
@@ -84,8 +87,16 @@ while True:
         window[f'-COL{layout}-'].update(visible=True)
 
     if event == 'validation2':
+        counter += 1
         if values['-IN-0'] != '':
-            pdf_merge(values['-IN-0'].split(';'))
+            pdf_merge(values['-IN-0'].split(';'), counter)
+        window[f'-COL{layout}-'].update(visible=False)
+        layout = 1
+        window[f'-COL{layout}-'].update(visible=True)
+
+    if event == 'validation3':
+        if values['-IN-1'] != '' and values['watermark'] != '':
+            add_watermark(values['-IN-1'].split(';'), values['watermark'])
         window[f'-COL{layout}-'].update(visible=False)
         layout = 1
         window[f'-COL{layout}-'].update(visible=True)
