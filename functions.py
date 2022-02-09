@@ -63,4 +63,4 @@ def size_reduction(image_paths, resolution):
             image.thumbnail((1280, 1280))
         elif resolution == 480:
             image.thumbnail((640, 640))
-        image.save(f"Reduced_img/{img_name[0]}{ext}")
+        image.save(f"Reduced_img/{img_name[0]}_{resolution}{ext}")

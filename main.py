@@ -5,47 +5,53 @@ sg.theme('DarkBlack')
 
 layout1 = [
     [sg.Text('Select one of the options below:'
-             '\n--------------------------------', font='Consolas 17')],
+             '\n--------------------------------', font='Consolas 20')],
     [sg.Button("Image - Resize")],
     [sg.Button("PDF - Merge")],
     [sg.Button("PDF - Add watermark")],
     [sg.T('')],
-    [sg.Button('Exit')]
+    [sg.Button('Exit', font='10')]
 ]
 
 layout2 = [
-    [sg.Text('Image - Resize:'
-             '\n--------------------------------', font='Consolas 17')],
+    [sg.Text('Image - Resize:\n'
+             '--------------------------------', font='Consolas 20')],
+    [sg.Text('First select the images (jpg or png), That you want to resize\n'
+             'Then select your desired image resolution and click Proceed')],
     [sg.Text('Choose files: '), sg.Input(key='-IN-'), sg.FilesBrowse()],
     [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution')],
     [sg.Button('Proceed', key='validation1')],
     [sg.T('')],
-    [sg.Button('Back', key='back1', font='Bold')]
+    [sg.Button('Back', key='back1', font='10')]
 ]
 
 layout3 = [
     [sg.Text('PDF - Merge'
-             '\n--------------------------------', font='Consolas 17')],
+             '\n--------------------------------', font='Consolas 20')],
+    [sg.Text('First select the PDF files that you want to merge\n'
+             'Then all you have to do is click Proceed')],
     [sg.Text('Choose files: '), sg.Input(key='-IN-0'), sg.FilesBrowse()],
     [sg.Button('Proceed', key='validation2')],
     [sg.T('')],
-    [sg.Button('Back', key='back2', font='Bold')]
+    [sg.Button('Back', key='back2', font='10')]
 ]
 
 layout4 = [
     [sg.Text('PDF - Add watermark'
-             '\n--------------------------------', font='Consolas 17')],
+             '\n--------------------------------', font='Consolas 20')],
+    [sg.Text('First select PDF files that you want to watermark\n'
+             'Then select a PDF file with the watermark and click Proceed')],
     [sg.Text('Choose files: '), sg.Input(key='-IN-1'), sg.FilesBrowse()],
     [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark')],
     [sg.Button('Proceed', key='validation3')],
     [sg.T('')],
-    [sg.Button('Back', key='back3', font='Bold')]
+    [sg.Button('Back', key='back3', font='10')]
 ]
 
 layout_all_done = [
     [sg.Text('All Done!'
-             '\n--------------------------------', font='Consolas 17')],
-    [sg.Ok(font='Bold')]
+             '\n--------------------------------', font='Consolas 20')],
+    [sg.Ok(font='10', size=(15, 1))]
 ]
 
 layout = [
