@@ -21,8 +21,8 @@ def eng_main():
         [sg.Text('First select the images (jpg or png), That you want to resize\n'
                  'Then select your desired image resolution and click Proceed')],
         [sg.Text('Choose files: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse(file_types=(('All JPG/PNG Files', '*.*g'), ))],
-        [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution')],
-        [sg.Button('Proceed', key='validation1')],
+        [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution'),
+         sg.Button('Proceed', key='validation1', size=(10, 2))],
         [sg.T('')],
         [sg.Button('Back', key='back1', font='10')]
     ]
@@ -32,7 +32,7 @@ def eng_main():
                  '\n--------------------------------', font='Consolas 20')],
         [sg.Text('First select the PDF files that you want to merge\n'
                  'Then all you have to do is click Proceed')],
-        [sg.Text('Choose files: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse()],
+        [sg.Text('Choose files: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
         [sg.Button('Proceed', key='validation2')],
         [sg.T('')],
         [sg.Button('Back', key='back2', font='10')]
@@ -43,8 +43,8 @@ def eng_main():
                  '\n--------------------------------', font='Consolas 20')],
         [sg.Text('First select PDF files that you want to watermark\n'
                  'Then select a PDF file with the watermark and click Proceed')],
-        [sg.Text('Choose files: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse()],
-        [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark')],
+        [sg.Text('Choose files: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
+        [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark', file_types=(('All PDF Files:', '*.pdf'), ))],
         [sg.Button('Proceed', key='validation3')],
         [sg.T('')],
         [sg.Button('Back', key='back3', font='10')]
@@ -142,7 +142,7 @@ def pl_main():
                  '--------------------------------', font='Consolas 20')],
         [sg.Text('Najpierw wybierz pliki (w formacie jpg lub png), których rozmiar chciałbyś zmienić\n'
                  'Następnie wybierz rozmiar z podanych i kliknij Potwierdź')],
-        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse('Przeglądaj')],
+        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All JPG/PNG Files', '*.*g'), ))],
         [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE',
                     size=(10, 3), key='Resolution')],
         [sg.Button('Potwierdź', key='validation1')],
@@ -155,7 +155,7 @@ def pl_main():
                  '\n--------------------------------', font='Consolas 20')],
         [sg.Text('Wybierz pliki PDF które chciałbyś połączyć w jeden\n'
                  'Następnie kliknij Potwierdź')],
-        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse('Przeglądaj')],
+        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ))],
         [sg.Button('Potwierdź', key='validation2')],
         [sg.T('')],
         [sg.Button('Cofnij', key='back2', font='10')]
@@ -166,8 +166,8 @@ def pl_main():
                  '\n--------------------------------', font='Consolas 20')],
         [sg.Text('Wybierz pliki PDF do których chciałbyś dołączyć znak wodny\n'
                  'Następnie wybierz plik PDF ze znakiem wodnym i kliknij Potwierdź')],
-        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse('Przeglądaj')],
-        [sg.Text('Wybierz plik ze znakiem wodnym: '), sg.Input(key='-IN-2'), sg.FileBrowse('Przeglądaj', key='watermark')],
+        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ))],
+        [sg.Text('Wybierz plik ze znakiem wodnym: '), sg.Input(key='-IN-2'), sg.FileBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ), key='watermark')],
         [sg.Button('Potwierdź', key='validation3')],
         [sg.T('')],
         [sg.Button('Cofnij', key='back3', font='10')]
