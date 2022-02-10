@@ -1,2 +1,2 @@
 - Open up the folder where a new file has been stored
-- Remove the 'placeholder' text from File Explorer paths in Input()
+- Add file_types to image searches and pdf searches

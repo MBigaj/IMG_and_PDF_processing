@@ -20,7 +20,7 @@ def eng_main():
                  '--------------------------------', font='Consolas 20')],
         [sg.Text('First select the images (jpg or png), That you want to resize\n'
                  'Then select your desired image resolution and click Proceed')],
-        [sg.Text('Choose files: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse()],
+        [sg.Text('Choose files: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse(file_types=(('All JPG/PNG Files', '*.*g'), ))],
         [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution')],
         [sg.Button('Proceed', key='validation1')],
         [sg.T('')],
