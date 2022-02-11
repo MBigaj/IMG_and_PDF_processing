@@ -1,5 +1,5 @@
-import PySimpleGUI as sg
-from functions import *
+from tools_func import *
+from gui_build_func import *
 
 
 def eng_main():
@@ -22,7 +22,7 @@ def eng_main():
                  'Then select your desired image resolution and click Proceed')],
         [sg.Text('Choose files: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse(file_types=(('All JPG/PNG Files', '*.*g'), ))],
         [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution'),
-         sg.Button('Proceed', key='validation1', size=(10, 2))],
+         proceed_button('Proceed', 'validation1')],
         [sg.T('')],
         [sg.Button('Back', key='back1', font='10')]
     ]
@@ -33,7 +33,7 @@ def eng_main():
         [sg.Text('First select the PDF files that you want to merge\n'
                  'Then all you have to do is click Proceed')],
         [sg.Text('Choose files: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
-        [sg.Button('Proceed', key='validation2')],
+        [proceed_button('Proceed', 'validation2')],
         [sg.T('')],
         [sg.Button('Back', key='back2', font='10')]
     ]
@@ -45,7 +45,7 @@ def eng_main():
                  'Then select a PDF file with the watermark and click Proceed')],
         [sg.Text('Choose files: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
         [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark', file_types=(('All PDF Files:', '*.pdf'), ))],
-        [sg.Button('Proceed', key='validation3')],
+        [proceed_button('Proceed', 'validation3')],
         [sg.T('')],
         [sg.Button('Back', key='back3', font='10')]
     ]
@@ -96,23 +96,23 @@ def eng_main():
         if event == 'validation1':
             if values['-IN-'] != '':
                 size_reduction(values['-IN-'].split(';'), values['Resolution'])
-            window[f'-COL{layout}-'].update(visible=False)
-            layout = 5
-            window[f'-COL{layout}-'].update(visible=True)
+                window[f'-COL{layout}-'].update(visible=False)
+                layout = 5
+                window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'validation2':
             if values['-IN-0'] != '':
                 pdf_merge(values['-IN-0'].split(';'))
-            window[f'-COL{layout}-'].update(visible=False)
-            layout = 5
-            window[f'-COL{layout}-'].update(visible=True)
+                window[f'-COL{layout}-'].update(visible=False)
+                layout = 5
+                window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'validation3':
             if values['-IN-1'] != '' and values['watermark'] != '':
                 add_watermark(values['-IN-1'].split(';'), values['watermark'])
-            window[f'-COL{layout}-'].update(visible=False)
-            layout = 5
-            window[f'-COL{layout}-'].update(visible=True)
+                window[f'-COL{layout}-'].update(visible=False)
+                layout = 5
+                window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'Ok':
             window[f'-COL{layout}-'].update(visible=False)
@@ -145,7 +145,7 @@ def pl_main():
         [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All JPG/PNG Files', '*.*g'), ))],
         [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE',
                     size=(10, 3), key='Resolution')],
-        [sg.Button('Potwierdź', key='validation1')],
+        [proceed_button('Potwierdź', 'validation1')],
         [sg.T('')],
         [sg.Button('Cofnij', key='back1', font='10')]
     ]
@@ -156,7 +156,7 @@ def pl_main():
         [sg.Text('Wybierz pliki PDF które chciałbyś połączyć w jeden\n'
                  'Następnie kliknij Potwierdź')],
         [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ))],
-        [sg.Button('Potwierdź', key='validation2')],
+        [proceed_button('Potwierdź', 'validation2')],
         [sg.T('')],
         [sg.Button('Cofnij', key='back2', font='10')]
     ]
@@ -168,7 +168,7 @@ def pl_main():
                  'Następnie wybierz plik PDF ze znakiem wodnym i kliknij Potwierdź')],
         [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ))],
         [sg.Text('Wybierz plik ze znakiem wodnym: '), sg.Input(key='-IN-2'), sg.FileBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ), key='watermark')],
-        [sg.Button('Potwierdź', key='validation3')],
+        [proceed_button('Potwierdź', 'validation3')],
         [sg.T('')],
         [sg.Button('Cofnij', key='back3', font='10')]
     ]
@@ -219,23 +219,23 @@ def pl_main():
         if event == 'validation1':
             if values['-IN-'] != '':
                 size_reduction(values['-IN-'].split(';'), values['Resolution'])
-            window[f'-COL{layout}-'].update(visible=False)
-            layout = 5
-            window[f'-COL{layout}-'].update(visible=True)
+                window[f'-COL{layout}-'].update(visible=False)
+                layout = 5
+                window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'validation2':
             if values['-IN-0'] != '':
                 pdf_merge(values['-IN-0'].split(';'))
-            window[f'-COL{layout}-'].update(visible=False)
-            layout = 5
-            window[f'-COL{layout}-'].update(visible=True)
+                window[f'-COL{layout}-'].update(visible=False)
+                layout = 5
+                window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'validation3':
             if values['-IN-1'] != '' and values['watermark'] != '':
                 add_watermark(values['-IN-1'].split(';'), values['watermark'])
-            window[f'-COL{layout}-'].update(visible=False)
-            layout = 5
-            window[f'-COL{layout}-'].update(visible=True)
+                window[f'-COL{layout}-'].update(visible=False)
+                layout = 5
+                window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'Ok':
             window[f'-COL{layout}-'].update(visible=False)
