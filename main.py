@@ -6,54 +6,59 @@ def eng_main():
     sg.theme('DarkBlack')
 
     layout1 = [
-        [sg.Text('Select one of the options below:'
-                 '\n--------------------------------', font='Consolas 20')],
-        [sg.Button("Image - Resize")],
-        [sg.Button("PDF - Merge")],
-        [sg.Button("PDF - Add watermark")],
-        [sg.T('')],
-        [sg.Button('Polish', font='10'), sg.Button('Exit', font='10')]
+        [sg.Text('Select one of the options below:\n'
+                 '-----------------------------------------------', font=('Impact',  30), justification='center')],
+        [sg.Button('Image - Resize', font=('Eternal Ancient', 20), size=(20))],
+        [sg.Button('PDF - Merge', font=('Eternal Ancient', 20), size=(20))],
+        [sg.Button('PDF - Add watermark', font=('Eternal Ancient', 20), size=(20))],
+        [sg.Text('-----------------------------------------------', font=('Impact', 30), justification='center')],
+        [sg.Text('Language:', font=('Impact',))],
+        [sg.Button('Polish', font=('Eternal Ancient', 10)), sg.Button('Exit', font=('Eternal Ancient', 10), border_width=5, pad=((400, 0), (0, 0)))]
     ]
 
     layout2 = [
         [sg.Text('Image - Resize:\n'
-                 '--------------------------------', font='Consolas 20')],
-        [sg.Text('First select the images (jpg or png), That you want to resize\n'
-                 'Then select your desired image resolution and click Proceed')],
-        [sg.Text('Choose files: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse(file_types=(('All JPG/PNG Files', '*.*g'), ))],
-        [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(10, 3), key='Resolution'),
-         proceed_button('Proceed', 'validation1')],
+                 '---------------------------------------', font=('Impact',  30), justification='center')],
+        [sg.Text('First select the images\n'
+                 '(jpg or png) that you want to resize\n'
+                 'Then select your desired image\n'
+                 'resolution and click -Proceed-', font=('Impact', 16), justification='center'),
+         sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE', size=(5, 3), key='Resolution', font=('Eternal Ancient', 17))],
         [sg.T('')],
-        [sg.Button('Back', key='back1', font='10')]
+        [sg.Text('Choose files: ', font=('Impact', 15, 'underline'))],
+        [sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse(file_types=(('All JPG/PNG Files', '*.??g'), ), font=('Eternal Ancient', 10), pad=((25, 0), (0, 0)))],
+        [sg.T('')],
+        [proceed_button('Proceed', 'validation1')],
+        [back_button('Back', 'back1')]
     ]
 
     layout3 = [
-        [sg.Text('PDF - Merge'
-                 '\n--------------------------------', font='Consolas 20')],
+        [sg.Text('PDF - Merge\n'
+                 '------------------------------------------', font=('Impact',  30), justification='center')],
         [sg.Text('First select the PDF files that you want to merge\n'
-                 'Then all you have to do is click Proceed')],
+                 'Then all you have to do is click Proceed', font=('Impact', 16), justification='center')],
         [sg.Text('Choose files: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
         [proceed_button('Proceed', 'validation2')],
         [sg.T('')],
-        [sg.Button('Back', key='back2', font='10')]
+        [back_button('Back', 'back2')]
     ]
 
     layout4 = [
-        [sg.Text('PDF - Add watermark'
-                 '\n--------------------------------', font='Consolas 20')],
+        [sg.Text('PDF - Add watermark\n'
+                 '-----------------------------------------------', font=('Impact',  30), justification='center')],
         [sg.Text('First select PDF files that you want to watermark\n'
                  'Then select a PDF file with the watermark and click Proceed')],
         [sg.Text('Choose files: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
         [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark', file_types=(('All PDF Files:', '*.pdf'), ))],
         [proceed_button('Proceed', 'validation3')],
         [sg.T('')],
-        [sg.Button('Back', key='back3', font='10')]
+        [back_button('Back', 'back3')]
     ]
 
     layout_all_done = [
-        [sg.Text('All Done!'
-                 '\n--------------------------------', font='Consolas 20')],
-        [sg.Ok(font='10', size=(15, 1))]
+        [sg.Text('All Done!\n'
+                 '----------------', font=('Impact',  30), justification='center')],
+        [sg.Button('Ok', font=('Eternal Ancient', 15), expand_x=True)]
     ]
 
     layout = [
@@ -129,12 +134,13 @@ def eng_main():
 def pl_main():
     layout1 = [
         [sg.Text('Wybierz jedną z opcji:'
-                 '\n--------------------------------', font='Consolas 20')],
-        [sg.Button("Zmień rozmiar obrazów", key='Image - Resize')],
-        [sg.Button("Połącz pliki PDF", key='PDF - Merge')],
-        [sg.Button("Dodaj wybrany znak wodny do plików PDF", key='PDF - Add watermark')],
-        [sg.T('')],
-        [sg.Button('English', font='10'), sg.Button('Wyjdź', key='Exit', font='10')]
+                 '\n-----------------------------------------------', font=('Impact',  30), justification='center')],
+        [sg.Button("Zmień rozmiar obrazów", key='Image - Resize', font=('Eternal Ancient', 20), size=(20))],
+        [sg.Button("Połącz pliki PDF", key='PDF - Merge', font=('Eternal Ancient', 20), size=(20))],
+        [sg.Button("Dodaj wybrany znak wodny do plików PDF", key='PDF - Add watermark', font=('Eternal Ancient', 20), size=(20))],
+        [sg.Text('-----------------------------------------------', font=('Impact', 30), justification='center')],
+        [sg.Text('Język:', font=('Impact',))],
+        [sg.Button('English', font=('Eternal Ancient', 10)), sg.Button('Wyjdź', key='Exit', font=('Eternal Ancient', 10))]
     ]
 
     layout2 = [
@@ -142,12 +148,12 @@ def pl_main():
                  '--------------------------------', font='Consolas 20')],
         [sg.Text('Najpierw wybierz pliki (w formacie jpg lub png), których rozmiar chciałbyś zmienić\n'
                  'Następnie wybierz rozmiar z podanych i kliknij Potwierdź')],
-        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All JPG/PNG Files', '*.*g'), ))],
+        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All JPG/PNG Files', '*.??g'), ))],
         [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE',
                     size=(10, 3), key='Resolution')],
         [proceed_button('Potwierdź', 'validation1')],
         [sg.T('')],
-        [sg.Button('Cofnij', key='back1', font='10')]
+        [back_button('Cofnij', 'back1')]
     ]
 
     layout3 = [
@@ -158,7 +164,7 @@ def pl_main():
         [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ))],
         [proceed_button('Potwierdź', 'validation2')],
         [sg.T('')],
-        [sg.Button('Cofnij', key='back2', font='10')]
+        [back_button('Cofnij', 'back2')]
     ]
 
     layout4 = [
@@ -170,13 +176,13 @@ def pl_main():
         [sg.Text('Wybierz plik ze znakiem wodnym: '), sg.Input(key='-IN-2'), sg.FileBrowse('Przeglądaj', file_types=(('All PDF Files:', '*.pdf'), ), key='watermark')],
         [proceed_button('Potwierdź', 'validation3')],
         [sg.T('')],
-        [sg.Button('Cofnij', key='back3', font='10')]
+        [back_button('Cofnij', 'back3')]
     ]
 
     layout_all_done = [
         [sg.Text('Skończone!'
                  '\n--------------------------------', font='Consolas 20')],
-        [sg.Ok(font='10', size=(15, 1))]
+        [sg.Button('Ok', font='10', size=(15, 2), expand_x=True)]
     ]
 
     layout = [
