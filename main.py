@@ -171,14 +171,19 @@ def pl_main():
 
     layout2 = [
         [sg.Text('Zmień rozmiar obrazów:\n'
-                 '--------------------------------', font='Consolas 20')],
-        [sg.Text('Najpierw wybierz pliki (w formacie jpg lub png), których rozmiar chciałbyś zmienić\n'
-                 'Następnie wybierz rozmiar z podanych i kliknij Potwierdź')],
-        [sg.Text('Wybierz pliki: '), sg.Input(key='-IN-', do_not_clear=False), sg.FilesBrowse('Przeglądaj', file_types=(('All JPG/PNG Files', '*.??g'), ))],
-        [sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE',
-                    size=(10, 3), key='Resolution')],
-        [proceed_button('Potwierdź', 'validation1')],
+                 '----------------------------------------------', font=('Impact', 30), justification='center')],
+        [sg.Text('Najpierw wybierz pliki (w formacie jpg lub png),\n'
+                 'których rozmiar chciałbyś zmienić\n'
+                 'Następnie wybierz rozmiar\n'
+                 'z podanych i kliknij Potwierdź', font=('Impact', 16), justification='center'),
+         sg.Listbox(values=('1080', '720', '480'), default_values=['1080'], select_mode='LISTBOX_SELECT_MODE_SINGLE',
+                    size=(5, 3), key='Resolution', font=('Eternal Ancient', 17))],
         [sg.T('')],
+        [sg.Text('Wybierz pliki: ', font=('Impact', 15, 'underline'))],
+        [sg.Input(key='-IN-', do_not_clear=False),
+         sg.FilesBrowse('Przeglądaj', file_types=(('All JPG/PNG Files', '*.??g'), ), font=('Eternal Ancient', 10), pad=((25, 0), (0, 0)))],
+        [sg.T('')],
+        [proceed_button('Potwierdź', 'validation1')],
         [back_button('Cofnij', 'back1')]
     ]
 
