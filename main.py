@@ -1,7 +1,6 @@
 from tools_func import *
 from gui_build_func import *
 
-
 def eng_main():
     sg.theme('DarkBlack')
 
@@ -34,10 +33,13 @@ def eng_main():
 
     layout3 = [
         [sg.Text('PDF - Merge\n'
-                 '------------------------------------------', font=('Impact',  30), justification='center')],
+                 '-------------------------------------', font=('Impact',  30), justification='center')],
         [sg.Text('First select the PDF files that you want to merge\n'
                  'Then all you have to do is click Proceed', font=('Impact', 16), justification='center')],
-        [sg.Text('Choose files: '), sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
+        [sg.T('')],
+        [sg.Text('Choose files: ', font=('Impact', 15, 'underline'))],
+        [sg.Input(key='-IN-0', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ), font=('Eternal Ancient', 10), pad=((25, 0), (0, 0)))],
+        [sg.T('')],
         [proceed_button('Proceed', 'validation2')],
         [sg.T('')],
         [back_button('Back', 'back2')]
@@ -45,11 +47,29 @@ def eng_main():
 
     layout4 = [
         [sg.Text('PDF - Add watermark\n'
-                 '-----------------------------------------------', font=('Impact',  30), justification='center')],
+                 '-------------------------------------------', font=('Impact',  30), justification='center')],
         [sg.Text('First select PDF files that you want to watermark\n'
-                 'Then select a PDF file with the watermark and click Proceed')],
-        [sg.Text('Choose files: '), sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ))],
-        [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark', file_types=(('All PDF Files:', '*.pdf'), ))],
+                 'Then select a PDF file with the watermark and click Proceed', font=('Impact', 16), justification='center')],
+        [sg.T('')],
+        [sg.Text('Choose files: ', font=('Impact', 15, 'underline'))],
+        [sg.Input(key='-IN-1', do_not_clear=False), sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'), ), font=('Eternal Ancient', 10), pad=((25, 0), (0, 0)))],
+        [sg.Text('Choose Watermark file: ', font=('Impact', 15, 'underline'))],
+        [sg.Input(key='-IN-2'), sg.FileBrowse(key='watermark', file_types=(('All PDF Files:', '*.pdf'), ), font=('Eternal Ancient', 10), pad=((25, 0), (0, 0)))],
+        [sg.T('')],
+        [proceed_button('Proceed', 'validation3')],
+        [sg.T('')],
+        [back_button('Back', 'back3')]
+    ]
+
+    layout5 = [
+        [sg.Text('PDF -> DOCX converter\n'
+                 '-----------------------------------------------', font=('Impact', 30), justification='center')],
+        [sg.Text('First select PDF files that you want to watermark\n'
+                 'Then select a PDF file with the watermark and click Proceed', font=('Impact', 16), justification='center')],
+        [sg.Text('Choose files: '), sg.Input(key='-IN-1', do_not_clear=False),
+         sg.FilesBrowse(file_types=(('All PDF Files:', '*.pdf'),))],
+        [sg.Text('Choose Watermark file: '), sg.Input(key='-IN-2'),
+         sg.FileBrowse(key='watermark', file_types=(('All PDF Files:', '*.pdf'),))],
         [proceed_button('Proceed', 'validation3')],
         [sg.T('')],
         [back_button('Back', 'back3')]
@@ -66,6 +86,7 @@ def eng_main():
          sg.Column(layout2, visible=False, key='-COL2-'),
          sg.Column(layout3, visible=False, key='-COL3-'),
          sg.Column(layout4, visible=False, key='-COL4-'),
+         sg.Column(layout5, visible=False, key='-COL5-'),
          sg.Column(layout_all_done, visible=False, key='-COL5-')]
     ]
 
@@ -91,6 +112,11 @@ def eng_main():
         if event == 'PDF - Add watermark':
             window[f'-COL{layout}-'].update(visible=False)
             layout = 4
+            window[f'-COL{layout}-'].update(visible=True)
+
+        if event == 'PDF -> DOCX converter':
+            window[f'-COL{layout}-'].update(visible=False)
+            layout = 5
             window[f'-COL{layout}-'].update(visible=True)
 
         if event == 'back1' or event == 'back2' or event == 'back3':

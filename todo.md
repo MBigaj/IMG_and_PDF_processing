@@ -1,2 +1,3 @@
 - Open up the folder where a new file has been stored
 - Add file_types to image searches and pdf searches
+- Add .pdf to .docx file conversion

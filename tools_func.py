@@ -1,6 +1,11 @@
 from PIL import Image
 import PyPDF2
 import os
+# from pdf2docx import Converter
+
+
+def pdf_to_docx():
+    pass
 
 
 def add_watermark(pdf_paths, watermark_path):
